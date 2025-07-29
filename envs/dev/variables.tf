@@ -41,7 +41,7 @@ variable "aks_vm_size" {
 variable "ibmcloud_api_key" {
   type        = string
   sensitive   = true
-  description = "IBM Cloud API key passed down to child modules"
+  description = "IBM Cloud API key for provider authentication"
 }
 
 variable "ibm_region" {

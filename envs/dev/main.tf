@@ -27,9 +27,9 @@ provider "azurerm" {
 
 # Single IBM Cloud provider (region set via variable)
 provider "ibm" {
-  region = var.ibm_region
+  ibmcloud_api_key = var.ibmcloud_api_key
+  region           = var.ibm_region
 }
-
 ############################################
 # AKS (Azure Kubernetes Service) module
 ############################################
@@ -48,7 +48,6 @@ module "azure_aks" {
 ############################################
 module "ibm_roks" {
   source  = "github.com/oborges/ibmcloud-infra-terraform//modules/roks?ref=main"
-  ibmcloud_api_key  = var.ibmcloud_api_key
   region            = var.ibm_region
   cluster_name      = var.roks_cluster_name
   vpc_name          = var.ibm_vpc_name
@@ -64,7 +63,6 @@ module "ibm_roks" {
 ############################################
 module "ibm_vm" {
   source  = "github.com/oborges/ibmcloud-infra-terraform//modules/vsi?ref=main"
-  ibmcloud_api_key       = var.ibmcloud_api_key
   region                 = var.ibm_region
   instance_name          = var.vm_instance_name
   zone                   = var.ibm_zone
