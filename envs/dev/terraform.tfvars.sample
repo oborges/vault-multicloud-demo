@@ -1,0 +1,52 @@
+########################################
+# Azure inputs
+########################################
+azure_resource_group_name  = "rg-vault-demo"
+azure_region               = "eastus"
+aks_cluster_name           = "aks-vault-demo"
+aks_dns_prefix             = "vaultdemo"
+aks_node_count             = 2
+aks_vm_size                = "Standard_DS3_v2"
+
+########################################
+# IBM Cloud / ROKS inputs
+########################################
+ibm_region      = "us-south"
+ibm_vpc_name    = "vpc-vault-demo"
+
+# Zones to span for the ROKS worker pool
+ibm_zones = [
+  "us-south-1",
+  "us-south-2",
+  "us-south-3"
+]
+
+# Map each zone to its subnet ID (must match every zone element above)
+ibm_subnet_ids = {
+  "us-south-1" = "0000-a1234546-1234-4567-abc1-900000005bce"
+  "us-south-2" = "1111-bcd13456-5678-4567-b2ca-b12345a6782f"
+  "us-south-3" = "2222-b34dsadf-0e25-5912-b834-4c8e81d8e123"
+}
+
+roks_cluster_name  = "roks-vault-demo"
+roks_kube_version  = "4.17.28_openshift"
+roks_flavor        = "bx2.4x16"
+roks_worker_count  = 2             # workers per zone
+
+########################################
+# IBM Cloud VSI inputs
+########################################
+vm_instance_name    = "vault-demo-vm"
+ibm_zone            = "us-south-1"
+ibm_subnet_id       = "0000-a123456-1234-4567-abc1-900000005ece"
+vm_image_name       = "ibm-redhat-9-6-minimal-amd64-2"
+vm_profile          = "bx2-2x8"
+ibm_ssh_key_name    = ""     # "" to auto‑generate
+vm_attach_fip       = true
+vm_allowed_ssh_cidr = "0.0.0.0/0"
+
+########################################
+# Common tags & environment
+########################################
+environment = "dev"
+
