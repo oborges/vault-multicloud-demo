@@ -56,24 +56,8 @@ module "ibm_roks" {
   kube_version      = var.roks_kube_version
   worker_flavor     = var.roks_flavor
   workers_per_zone  = var.roks_worker_count
-}
-
-############################################
-# IBM Cloud Virtual Server (VSI) module
-############################################
-module "ibm_vm" {
-  source  = "github.com/oborges/ibmcloud-infra-terraform//modules/vsi?ref=main"
-  region                 = var.ibm_region
-  instance_name          = var.vm_instance_name
-  zone                   = var.ibm_zone
-  vpc_name               = var.ibm_vpc_name           # module resolves VPC by name
-  subnet_id              = var.ibm_subnet_id
-  image_name             = var.vm_image_name
-  profile                = var.vm_profile
-  existing_ssh_key_name  = var.ibm_ssh_key_name
-  attach_floating_ip     = var.vm_attach_fip
-  allowed_ssh_cidr       = var.vm_allowed_ssh_cidr
-  environment            = var.environment
+  create_cos        = true
+  cos_name          = "vaultdemo-cos"
 }
 
 ############################################
@@ -84,15 +68,3 @@ output "aks_kube_config" {
   description = "Kubeconfig for the AKS cluster (sensitive)"
   sensitive   = true
 }
-
-#output "roks_kube_config" {
-#  value       = module.ibm_roks.kube_config
-#  description = "Kubeconfig for the ROKS cluster (sensitive)"
-#  sensitive   = true
-#}
-
-#output "vm_primary_ip" {
-#  value       = module.ibm_vm.primary_ipv4
-#  description = "Primary IPv4 address (or FIP) of the VSI"
-#}
-

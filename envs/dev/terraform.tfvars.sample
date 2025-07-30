@@ -32,6 +32,7 @@ roks_cluster_name  = "roks-vault-demo"
 roks_kube_version  = "4.17.28_openshift"
 roks_flavor        = "bx2.4x16"
 roks_worker_count  = 2             # workers per zone
+cos_crn = "crn:v1:bluemix:public:cloud-object-storage:global:a/xxxxxxxxxxxxxxxxxxxxxxxxxxxxx:yyyyyyyy-zzzz-....::"   #  COS CRN
 
 ########################################
 # IBM Cloud VSI inputs

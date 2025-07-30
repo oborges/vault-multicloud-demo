@@ -71,7 +71,7 @@ variable "roks_kube_version" {
 variable "roks_flavor" {
   type        = string
   description = "Worker node flavor (e.g. bx2.4x16)"
-  default     = "bx2.4x16"
+  default     = "bx2-2x8"
 }
 
 variable "roks_worker_count" {
@@ -90,53 +90,11 @@ variable "ibm_subnet_ids" {
   description = "Map of zone name => subnet ID for each ROKS zone"
 }
 
-########################################################
-# VM‑specific variables (module mirrors oborges/vsi)
-########################################################
-variable "vm_instance_name" {
+variable "cos_crn" {
+  description = "CRN of a *standard* Cloud Object Storage instance used by ROKS"
   type        = string
-  description = "Name of the virtual server instance (VSI)"
 }
 
-variable "ibm_zone" {
-  type        = string
-  description = "Single availability zone used for the VSI (e.g. us-south-1)"
-}
-
-variable "ibm_subnet_id" {
-  type        = string
-  description = "Subnet ID in which the VSI will be placed"
-}
-
-variable "vm_image_name" {
-  type        = string
-  description = "Public image name for the VSI (e.g. ibm-redhat-9-6-minimal-amd64-2)"
-  default     = "ibm-redhat-9-6-minimal-amd64-2"
-}
-
-variable "vm_profile" {
-  type        = string
-  description = "Compute profile for the VSI (e.g. bx2-2x8)"
-  default     = "bx2-2x8"
-}
-
-variable "ibm_ssh_key_name" {
-  type        = string
-  description = "Name of an existing IBM Cloud SSH key to reuse (blank = auto‑generate)"
-  default     = ""
-}
-
-variable "vm_attach_fip" {
-  type        = bool
-  description = "Whether to attach a floating IP to the VSI"
-  default     = true
-}
-
-variable "vm_allowed_ssh_cidr" {
-  type        = string
-  description = "CIDR block allowed for SSH inbound traffic"
-  default     = "0.0.0.0/0"
-}
 
 ########################################################
 # Common tags / environment label
